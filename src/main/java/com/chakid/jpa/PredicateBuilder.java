@@ -134,6 +134,22 @@ public class PredicateBuilder<T> {
         return this.predicate(condition, new NotInSpecification<T>(property, values));
     }
 
+    public PredicateBuilder<T> isNull(boolean condition, String property) {
+        return this.predicate(condition, new NullSpecification<T>(property));
+    }
+
+    public PredicateBuilder<T> isNull(String property) {
+        return this.predicate(true, new NullSpecification<T>(property));
+    }
+
+    public PredicateBuilder<T> isNotNull(boolean condition, String property) {
+        return this.predicate(condition, new NotNullSpecification<T>(property));
+    }
+
+    public PredicateBuilder<T> isNotNull(String property) {
+        return this.predicate(true, new NotNullSpecification<T>(property));
+    }
+
     public PredicateBuilder<T> predicate(Specification specification) {
         return predicate(true, specification);
     }
